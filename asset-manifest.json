@@ -1,0 +1,13 @@
+{
+  "files": {
+    "main.css": "/SI579-final-project-3/static/css/main.67a91c8e.css",
+    "main.js": "/SI579-final-project-3/static/js/main.f040b335.js",
+    "index.html": "/SI579-final-project-3/index.html",
+    "main.67a91c8e.css.map": "/SI579-final-project-3/static/css/main.67a91c8e.css.map",
+    "main.f040b335.js.map": "/SI579-final-project-3/static/js/main.f040b335.js.map"
+  },
+  "entrypoints": [
+    "static/css/main.67a91c8e.css",
+    "static/js/main.f040b335.js"
+  ]
+}
