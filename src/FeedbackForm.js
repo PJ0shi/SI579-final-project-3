@@ -4,30 +4,29 @@ import FeedbackCard from "./FeedbackCard.js";
 import Card from "react-bootstrap/Card";
 
 const FeedbackForm = ({username}) => {
-  //These are the initial form values
+//Initial form values with name already pre-filled
 const initialFormValues = {
   firstName: username,
   startDate: "",
   course: "",
   feedback: "",
 };
+  
 //data for the entire form
-  const [formData, setFormData] = useState(initialFormValues);
-  // const noneEmpty = Object.values(formData).every(item => item.length > 0)
-
+const [formData, setFormData] = useState(initialFormValues);
+  
 //checking if the form fields are empty (noneEmpty=true if all are filled) 
-  const noneEmpty =
-    String(formData.firstName) !== "" &&
-    String(formData.startDate) !== "" &&
-    String(formData.course) !== "" &&
-    String(formData.feedback) !== "";
+const noneEmpty =
+  String(formData.firstName) !== "" &&
+  String(formData.startDate) !== "" &&
+  String(formData.course) !== "" &&
+  String(formData.feedback) !== "";
 
-  //list of all the feedbacks
-  const [feedbacks, setFeedbacks] = useState([]);
+//list of all the feedbacks
+const [feedbacks, setFeedbacks] = useState([]);
 
-  //keeping track of course from dropdown
-  const [selectedCourse, setSelectedCourse] = useState('');
-
+//keeping track of selected course from dropdown
+const [selectedCourse, setSelectedCourse] = useState('');
 
   useEffect(() => {
     // Load feedbacks from local storage on component mount
@@ -36,7 +35,7 @@ const initialFormValues = {
       (a, b) => new Date(b.startDate) - new Date(a.startDate)
     );
         setFeedbacks(sortedFeedbacks);
-  }, []); // Empty dependency array to run this effect only once on mount
+  }, []); // Automatically sorting the array
 
   const saveFeedbacksToLocalStorage = (newFeedbacks) => {
     // Save feedbacks to local storage whenever the state is updated
@@ -63,10 +62,8 @@ const removeFeedback = (text) => {
   setFeedbacks((previousFeedbacks) => {
     const updatedFeedbacks = previousFeedbacks.filter(
       (feedback) => feedback.firstName !== text
-    );
-    
-    saveFeedbacksToLocalStorage(updatedFeedbacks);
-    
+    );    
+    saveFeedbacksToLocalStorage(updatedFeedbacks);    
     return updatedFeedbacks;
   });
 };
@@ -81,17 +78,14 @@ const removeFeedback = (text) => {
     });
   };
 
-//Submitting the form
+  //Submitting the form
   const submitForm = (e) => {
     e.preventDefault();
     setFormData(initialFormValues);
-    // Call the updateReminder function passed down from the parent component
   };
 
-//updating Feedback during edit mode
+  //updating Feedback during edit mode
   const updateFeedback = (firstName, updatedFeedback) => {
-    // Implement logic to update the reminder in your data store or state
-    // For example, if reminders is a state variable:
     setFeedbacks((prevFeedbacks) =>
       prevFeedbacks.map((feedback) =>
       feedback.firstName === firstName
@@ -116,17 +110,15 @@ const removeFeedback = (text) => {
               type="text"
               formData={formData}
               inputHandler={inputHandler}
-              disabled={true} // Set disabled attribute to true
-            />
-            {/* <FormItem label="Last Name" stateName="lastName" type="text" formData={formData} inputHandler={inputHandler} />       */}
+              disabled={true} 
+            />            
             <FormItem
               label="Entry Date"
               stateName="startDate"
               type="date"
               formData={formData}
               inputHandler={inputHandler}
-            />
-            {/* <FormItem label="End Date" stateName="endDate" type="date" formData={formData} inputHandler={inputHandler} />       */}
+            />            
             <FormItem
               label="Course"
               stateName="course"
@@ -142,8 +134,7 @@ const removeFeedback = (text) => {
               inputHandler={inputHandler}
             />
 
-            <div className="mb-3">
-              {/* <button disabled={!noneEmpty && !startBeforeEnd} type='submit'>Submit Vacation Request</button> */}
+            <div className="mb-3">              
               <button
                 type="submit"
                 className="button SIbutton"
@@ -155,8 +146,7 @@ const removeFeedback = (text) => {
             </div>
           </form>
         </Card>
-
-        {/* the returned list of reminders */}
+        
         {/* Course filter dropdown */}
         <div className="mb-3">
           <label htmlFor="courseFilter" className="form-label">
@@ -170,7 +160,7 @@ const removeFeedback = (text) => {
             style={{ width: '150px', backgroundColor: '#EDECEC'}} 
           >
             <option value="">All Courses</option>
-            {/* Add options based on your available courses */}
+            {/* Hardcoded values as there was not enough time to integrate with UM API */}
             <option value="SI 501">SI 501</option>
             <option value="SI 504">SI 504</option>
             <option value="SI 505">SI 505</option>
@@ -194,7 +184,7 @@ const removeFeedback = (text) => {
           </select>
         </div>
 
-        {/* <div className="col col-sm-12 col-lg-8"> */}
+       <div className="col col-sm-12 col-lg-8"> 
         <div className="feedback-card-grid">
           {filteredFeedbacks.length === 0 && "no entries"}
           <ul>
