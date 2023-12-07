@@ -1,15 +1,12 @@
-// In Register.js
 import React, { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import Card from 'react-bootstrap/Card';
-
 
 const Register = ({ onAuthentication }) => {
   const [username, setUsername] = useState('');
   const [password, setPassword] = useState('');
   const [users, setUsers] = useState([]); // Initialize the users array in Register.js
   const navigate = useNavigate(); // Hook for navigation
-
 
   const handleRegister = () => {
     // Validate input
@@ -34,6 +31,7 @@ const Register = ({ onAuthentication }) => {
     const updatedUsers = [...users, newUser];
     setUsers(updatedUsers);
     onAuthentication(updatedUsers);
+    
      // Store the updated users array in local storage
     localStorage.setItem('users', JSON.stringify(updatedUsers));
     console.log("users:"+ users)
