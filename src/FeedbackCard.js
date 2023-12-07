@@ -2,10 +2,11 @@ import React, { useState } from 'react';
 import Card from 'react-bootstrap/Card';
 
 const FeedbackCard = ({ feedback, removeFeedback, updateFeedback, username}) => {
-  const [isEditing, setIsEditing] = useState(false);
-  const [updatedFeedback, setUpdatedFeedback] = useState(feedback.feedback);
+  const [isEditing, setIsEditing] = useState(false); //To determine whether the card is being edited or not
+  const [updatedFeedback, setUpdatedFeedback] = useState(feedback.feedback); //To determine the new feedback after editing
   
   const handleEdit = () => {
+    //Checking post author to allow editing
     if (feedback.firstName === username) {
       setIsEditing(true);
     } else {
@@ -14,6 +15,7 @@ const FeedbackCard = ({ feedback, removeFeedback, updateFeedback, username}) => 
   };
 
   const handleCancelEdit = () => {
+    //After clicking the cancel button in edit mode
     setIsEditing(false);
     setUpdatedFeedback(feedback.feedback);
   };
@@ -23,10 +25,6 @@ const FeedbackCard = ({ feedback, removeFeedback, updateFeedback, username}) => 
     updateFeedback(feedback.firstName, updatedFeedback);
     setIsEditing(false);
   };
-
-  console.log("username passed to card:" + username)
-  console.log("feedback.firstName in card:" + feedback.firstName)
-
 
   return (
     <Card style={{ width: '18rem'}}>
