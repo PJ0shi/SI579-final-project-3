@@ -1,16 +1,14 @@
-// In Login.js
 import React, { useState } from 'react';
 import { Link, useNavigate } from 'react-router-dom';
 import Card from 'react-bootstrap/Card';
 
-
 const Login = ({ onLogin }) => {
-  const [username, setUsername] = useState('');
-  const [password, setPassword] = useState('');
+  const [username, setUsername] = useState(''); // Entered username
+  const [password, setPassword] = useState(''); // Entered password
   const navigate = useNavigate(); // Hook for navigation
 
   const handleLogin = () => {
-    // Pass both username and password to the parent component
+    // Passing both username and password to the parent component
     onLogin(username, password);
   };
 
